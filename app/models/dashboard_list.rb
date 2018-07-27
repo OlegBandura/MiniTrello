@@ -1,0 +1,2 @@
+class DashboardList < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class AttachmentCard < ApplicationRecord
+end
