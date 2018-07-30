@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DashboardListTest < ActiveSupport::TestCase
+class DashboardLabelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

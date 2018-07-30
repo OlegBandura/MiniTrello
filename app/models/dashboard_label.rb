@@ -1,0 +1,2 @@
+class DashboardLabel < ApplicationRecord
+end

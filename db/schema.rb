@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180727204538) do
+ActiveRecord::Schema.define(version: 20180730195700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attachment_cards", force: :cascade do |t|
-    t.bigint "attachments_id"
-    t.bigint "cards_id"
+    t.bigint "attachment_id"
+    t.bigint "card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attachments_id"], name: "index_attachment_cards_on_attachments_id"
-    t.index ["cards_id"], name: "index_attachment_cards_on_cards_id"
+    t.index ["attachment_id"], name: "index_attachment_cards_on_attachment_id"
+    t.index ["card_id"], name: "index_attachment_cards_on_card_id"
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -35,41 +35,38 @@ ActiveRecord::Schema.define(version: 20180727204538) do
     t.string "title", null: false
     t.text "description"
     t.bigint "users_id"
-    t.bigint "attachments_id"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attachments_id"], name: "index_cards_on_attachments_id"
     t.index ["lists_id"], name: "index_cards_on_lists_id"
     t.index ["users_id"], name: "index_cards_on_users_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "cards_id"
-    t.bigint "attachments_id"
+    t.bigint "card_id"
+    t.bigint "user_id"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attachments_id"], name: "index_comments_on_attachments_id"
-    t.index ["cards_id"], name: "index_comments_on_cards_id"
+    t.index ["card_id"], name: "index_comments_on_card_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "dashboard_lists", force: :cascade do |t|
-    t.bigint "dashboard_id_id"
-    t.bigint "list_id_id"
+  create_table "dashboard_labels", force: :cascade do |t|
+    t.bigint "dashboard_id"
+    t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dashboard_id_id"], name: "index_dashboard_lists_on_dashboard_id_id"
-    t.index ["list_id_id"], name: "index_dashboard_lists_on_list_id_id"
+    t.index ["dashboard_id"], name: "index_dashboard_labels_on_dashboard_id"
+    t.index ["label_id"], name: "index_dashboard_labels_on_label_id"
   end
 
   create_table "dashboards", force: :cascade do |t|
     t.string "title", null: false
     t.integer "policy"
     t.bigint "user_id"
-    t.bigint "dashboard_list_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dashboard_list_id_id"], name: "index_dashboards_on_dashboard_list_id_id"
     t.index ["user_id"], name: "index_dashboards_on_user_id"
   end
 
